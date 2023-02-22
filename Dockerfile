@@ -1,16 +1,28 @@
-FROM golang:1.20.1-buster as builder
+FROM golang:1.20.1 as builder
 
-ENV APP_HOME /app
-ENV PORT 8080
+RUN mkdir -p /app
+WORKDIR /app
 
-WORKDIR $APP_HOME
-COPY . $APP_HOME
+COPY go.mod .
+COPY go.sum .
+
+ENV GOPROXY https://proxy.golang.org,direct
 
 RUN go mod download
-RUN go build -v -o server
-RUN CGO_ENABLED=0 go build -o server main.go
 
-FROM alpine:latest
-COPY --from=builder $APP_HOME $APP_HOME
-EXPOSE $PORT
-CMD ["/app/server"]
+COPY . .
+COPY . .
+
+ENV CGO_ENABLED=0
+
+RUN GOOS=linux go build -o app .
+
+FROM alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/app .
+
+COPY *.csv .
+
+CMD ["/app/app"]
