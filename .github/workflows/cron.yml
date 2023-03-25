@@ -31,10 +31,9 @@ jobs:
           NAME: ip-geo-api
           IMAGE_TAG: ${{ github.sha }}
           USERNAME: ${{ secrets.GH_USERNAME }}
-          REGISTRY: ghcr.io/$USERNAME/$NAME
         run: |
           docker build -t $NAME .
-          docker tag $NAME $REGISTRY
-          docker push $REGISTRY
-          docker tag $NAME $REGISTRY:$IMAGE_TAG
-          docker push $REGISTRY:$IMAGE_TAG
+          docker tag $NAME ghcr.io/$USERNAME/$NAME
+          docker push ghcr.io/$USERNAME/$NAME
+          docker tag $NAME ghcr.io/$USERNAME/$NAME:$IMAGE_TAG
+          docker push ghcr.io/$USERNAME/$NAME:$IMAGE_TAG
