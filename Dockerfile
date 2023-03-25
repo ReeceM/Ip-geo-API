@@ -11,7 +11,6 @@ ENV GOPROXY https://proxy.golang.org,direct
 RUN go mod download
 
 COPY . .
-COPY . .
 
 ENV CGO_ENABLED=0
 
@@ -23,6 +22,6 @@ WORKDIR /app
 
 COPY --from=builder /app/app .
 
-COPY *.csv .
+COPY *.csv ./
 
 CMD ["/app/app"]
