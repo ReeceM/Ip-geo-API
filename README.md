@@ -32,7 +32,7 @@ The database is licensed under [CC0](https://creativecommons.org/share-your-work
 
 It means -
 
-> CC0 doesn't legally require users of the data to cite the source
+> CC0 doesn't legally require users of the data to cite the source!
 
 But feel free to attribute the ip database [provider](https://opengeofeed.org/)! <3
 
