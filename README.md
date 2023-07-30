@@ -11,7 +11,7 @@ It makes use of the [OpenGeoFeed database](https://github.com/sapics/ip-location
 Here's a command to do that ->
 
 ```bash
-docker run -p 8080:8080 ghcr.io/realchandan/ip-geo-api
+docker run -p 8080:8080 chandan313/ip-geo-api
 ```
 
 ## Request
